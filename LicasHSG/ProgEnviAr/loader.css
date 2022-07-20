@@ -135,12 +135,7 @@ input[type="submit"]{
     font-size: 18px;
 }
 
-.imagezap{
-    width: 15rem;
-    height: 15rem;
-    margin: 3rem 0 0 0;
-    display: none;
-}
+
 
 .loading{
     width: 10rem;
