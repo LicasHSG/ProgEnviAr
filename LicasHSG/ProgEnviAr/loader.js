@@ -12,4 +12,11 @@ function gotowhatsapp() {
 }
 
 
+function load(){
+    var c = document.getElementById("pontos"); 
+    c.setAttribute("style","visibility:visible")
+    
+}
+
+
 

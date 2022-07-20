@@ -139,7 +139,16 @@ input[type="submit"]{
     width: 15rem;
     height: 15rem;
     margin: 3rem 0 0 0;
+    display: none;
 }
+
+.loading{
+    width: 10rem;
+    height: 10rem;
+    margin: 3rem 0 0 0;
+    visibility: hidden;
+}
+
 
 
 #imagem{
