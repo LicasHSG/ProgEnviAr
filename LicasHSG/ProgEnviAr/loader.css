@@ -133,6 +133,7 @@ input[type="submit"]{
     margin-top: 4%;
     border-radius: 15px;
     font-size: 18px;
+    display: none;
 }
 
 
