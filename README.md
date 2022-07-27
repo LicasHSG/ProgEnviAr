@@ -2,7 +2,7 @@
 
 <a href="https://licashsg.github.io/ProgEnviAr">Home</a> </h1>
 
-<p align="center" > <strong>Projeto de transferencia de arquivos ainda em desenvolvimento</strong></p>
+<p align="center" > <strong>Projeto de transferência de arquivos ainda em desenvolvimento</strong></p>
 
 <div align="center">
 
