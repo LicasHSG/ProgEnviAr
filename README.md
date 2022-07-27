@@ -5,4 +5,4 @@
 <img alt="GitHub repo file count" src="https://img.shields.io/github/directory-file-count/LicasHSG/ProgEnviAr?color=a">
 <img alt="Bitbucket open issues" src="https://img.shields.io/bitbucket/issues/LicasHSG/ProgEnviAr?style=plastic">
   
-<p align="center"> Projeto de transferencia de arquivos ainda em desenvolvimento</p>
+<p align="center" > <strong>Projeto de transferencia de arquivos ainda em desenvolvimento</strong></p>
