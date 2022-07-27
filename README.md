@@ -1,6 +1,6 @@
-<h1 align="center"> Projeto EnviAr </h1>
+<h1 align="center"> Projeto EnviAr 
 
-<a align="center" href="https://licashsg.github.io/ProgEnviAr">Home</a>
+<ahref="https://licashsg.github.io/ProgEnviAr">Home</a> </h1>
 
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge) <br>
