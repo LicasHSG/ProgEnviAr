@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    
+    <head>
+		<meta charset="utf-8" />
+		<title>Receber</title>
+		<link rel="icon" type="image/x-icon" href="/html css/projeto envio/imgs/logo1.png">
+		<link rel="stylesheet" href=""">
+		<meta name="Description" content="a">
+		<meta name="Keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body></body>
+        <form id="receiveForm">
+            <div class="form-group">
+                <label for="">Receive</label>
+                <input id="keyInput" onkeypress="return event.keyCode != 13;"/><br/>
+                <div id="receiveBtn">Receive</div><br/><br/>
+                <label for="">Status: </label> <span id="status"></span>
+            </div>
+        </form>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                function updateDevice() {
+                    $.ajax({
+                        url: 'https://send-anywhere.com/web/v1/device',
+                        type: 'GET',
+                        dataType: 'jsonp',
+                        data: {api_key: "YOUR_API_KEY", profile_name: "username"},
+                        cache: false
+                    }).done(function (data) {
+                    });
+                }
+                function createKey(files) {
+                    var params = { file: [] };
+                    var formData = new FormData();
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        params.file.push({ name: file.name, size: file.size });
+                        formData.append("file" + i, file, file.name);
+                    }
+    
+                    $.ajax({
+                        url: 'https://send-anywhere.com/web/v1/key',
+                        type: 'GET',
+                        data: params,
+                        dataType: 'jsonp',
+                        cache: false
+                    }).done(function (data, textStatus, xhr) {
+                        $('#key').text(data.key);
+                        sendFile(data.weblink, formData);
+                    });
+                }
+    
+                function sendFile(url, data) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        cache: false
+                    }).done(function (data) {
+                    });
+                }
+    
+                function receiveKey(key) {
+                    $('#status').text('waiting');
+                    $.ajax({
+                        url: 'https://send-anywhere.com/web/v1/key/' + key,
+                        type: 'GET',
+                        dataType: 'jsonp',
+                        timeout: 3000,
+                        cache: false
+                    }).done(function (data) {
+                        receiveFile(data.weblink);
+                        $('#status').text('done');
+                    }).fail(function (xhr, textStatus, error) {
+                        $('#receiveForm .form-group').addClass('has-error');
+                        $('#status').text('failed').removeClass('text-success').addClass('text-danger');
+                    });
+                }
+    
+                function receiveFile(url) {
+                    $('<iframe />')
+                        .attr('src', url)
+                        .hide()
+                        .appendTo('body');
+                }
+    
+                $('#sendBtn').click(function (){
+                    var files = $('#fileInput').prop('files')
+                    if (files.length > 0) {
+                        createKey(files);
+                    }
+                });
+    
+                $('#receiveBtn').click(function (){
+                    receiveKey($('#keyInput').val());
+                });
+    
+                $('#keyInput').keyup(function (e) {
+                    if(e.keyCode == 13){
+                        $('#receiveBtn').click();
+                    }
+                });
+    
+                $('#keyInput').keydown(function () {
+                    $('#receiveForm .form-group').removeClass('has-error');
+                    $('#status').text('').removeClass('text-danger').addClass('text-success');
+                });
+    
+                updateDevice();
+            })
+        </script>
+    </body>
+    </html>
