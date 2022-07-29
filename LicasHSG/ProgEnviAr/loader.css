@@ -158,8 +158,24 @@ input[type="submit"]{
     display: none;
 }
 
+input[type="data-field"]{
+    border-radius: 5px;
+    border: 1px solid white;
+    margin-bottom: 1rem;
+}
+
 .clear{
     clear: both;
+}
+
+#receiveForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 10rem;
+    padding: 1rem;
+    margin: 1rem;
+    margin-top: 3rem;
+    text-align: center;
 }
 
 
@@ -206,6 +222,24 @@ footer p:nth-of-type(3) {
         height: 30%;
         margin: 15% 0 0 0 ;
     }
+
+    input[type="data-field"]{
+        border-radius: 5px;
+        border: 1px solid white;
+        margin-bottom: 1rem;
+        display: none;
+    }
+    
+    #receiveForm{
+        border: 1px solid black;
+        border-radius: 10px;
+        height: 10rem;
+        padding: 1rem;
+        margin: 1rem;
+        margin-top: 3rem;
+        text-align: center;
+        display: none;
+    }
 }
 
 
@@ -216,6 +250,23 @@ footer p:nth-of-type(3) {
     html, body{
         background-image: none;
         width: 100%;
+    }
+    input[type="data-field"]{
+        border-radius: 5px;
+        border: 1px solid white;
+        margin-bottom: 1rem;
+        display: none;
+    }
+    
+    #receiveForm{
+        border: 1px solid black;
+        border-radius: 10px;
+        height: 10rem;
+        padding: 1rem;
+        margin: 1rem;
+        margin-top: 3rem;
+        text-align: center;
+        display: none;
     }
 }
 
@@ -229,16 +280,6 @@ footer p:nth-of-type(3) {
     }
 
     
-    .header{
-        margin: 0;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-    }
-
-    .header .logo{
-        display: none;
-    }
 
     #imagem{
         width: 380px;
@@ -262,6 +303,24 @@ footer p:nth-of-type(3) {
         height: 5rem;
         margin: 0 0 0 0;
         
+    }
+
+    input[type="data-field"]{
+        border-radius: 5px;
+        border: 1px solid white;
+        margin-bottom: 1rem;
+        display: none;
+    }
+    
+    #receiveForm{
+        border: 1px solid black;
+        border-radius: 10px;
+        height: 10rem;
+        padding: 1rem;
+        margin: 1rem;
+        margin-top: 3rem;
+        text-align: center;
+        display: none;
     }
 
 
@@ -373,9 +432,22 @@ footer p:nth-of-type(3) {
         color: white;
     }
 
-    .imagezap{
-        width: 6em;
-        height: 6em;
+    input[type="data-field"]{
+        border-radius: 5px;
+        border: 1px solid white;
+        margin-bottom: 1rem;
+        display: none;
+    }
+    
+    #receiveForm{
+        border: 1px solid black;
+        border-radius: 10px;
+        height: 10rem;
+        padding: 1rem;
+        margin: 1rem;
+        margin-top: 3rem;
+        text-align: center;
+        display: none;
     }
 
 
