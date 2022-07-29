@@ -158,11 +158,6 @@ input[type="submit"]{
     display: none;
 }
 
-input[type="data-field"]{
-    border-radius: 5px;
-    border: 1px solid white;
-    margin-bottom: 1rem;
-}
 
 .clear{
     clear: both;
