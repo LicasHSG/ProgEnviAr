@@ -305,12 +305,7 @@ footer p:nth-of-type(3) {
         
     }
 
-    input[type="data-field"]{
-        border-radius: 5px;
-        border: 1px solid white;
-        margin-bottom: 1rem;
-        display: none;
-    }
+
     
     #receiveForm{
         border: 1px solid black;
