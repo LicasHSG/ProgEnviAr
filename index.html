@@ -18,6 +18,15 @@
 
 	</head>
 	<body>
+		<div class="header">
+
+			<div class="header-right">
+			  <a class="active" href="#">Home</a>
+			  <a href="#Receber">Receber</a>
+			  <a href="#sobre">Sobre</a>
+			</div>
+		  </div>
+		  
 
 
 		<div class="container">
@@ -26,9 +35,9 @@
 				
 				<input id="nome" placeholder="Nome" value="" type="text" required="text" /><br>
 				<label for="fileInput" class="nome-escolher">Escolher arquivos</label>
-				<input id="fileInput" name="file []" type="file"multiple/><br>
+				<input id="fileInput" name="file[]" type="file"multiple/><br>
 				<input type="button" id="sendBtn" name="gerar" leading-icon="click" value="Gerar codigo" onclick="load()"> </input><br>
-				<textarea id="key" placeholder="O codigo vai aparecer aqui" required="text"></textarea><br>
+				<textarea id="key" placeholder="O codigo vai aparecer aqui" required="text"> codigo aparece aqui</textarea><br>
 				<img class="loading" id="pontos" src="LicasHSG/ProgEnviAr/carregando.gif"  title="loading">
 				<input value="Enviar" type="submit" onclick="gotowhatsapp()"/ placeholder="Enviar">
 
@@ -37,32 +46,23 @@
 
 			<img id="imagem" src="LicasHSG/ProgEnviAr/grupo.png" title="grupo-pessoas">
 
-			<form id="receiveForm">
-				<div class="form-group">
-					<input type="data-field" title="codigo para receber" id="keyInput" onkeypress="return event.keyCode != 13;"/><br/>
-					<div id="receiveBtn">Receba!</div>
-					<p>Status: </label> <span id="status"></span>
-				</div>
-			</form>
+			
 
 		</div>
 
-<<<<<<< HEAD
-=======
 		
 
 
 
-		
 
 
-		<div id="sfck5mxtgl3f8q1a2rpzd9suk4729js7p1m"></div><script type="text/javascript" src="https://counter9.stat.ovh/private/counter.js?c=k5mxtgl3f8q1a2rpzd9suk4729js7p1m&down=async" async></script><br><a href="https://www.webcontadores.com">""</a><noscript><a href="https://www.webcontadores.com" title="contador de visitas para blogger"><img src="https://counter9.stat.ovh/private/webcontadores.php?c=k5mxtgl3f8q1a2rpzd9suk4729js7p1m" border="0" title="contador de visitas para blogger" alt="contador de visitas para blogger"></a></noscript>
->>>>>>> fb4e9d4eaa0e03a63b9667546439d3f9dcedd2c9
+
 
 		<script src="LicasHSG/ProgEnviAr/loader.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script type="text/javascript">
-			
+
+
 			$(document).ready(function () {
 				var device_key = '';
 				var device_id = '';
@@ -87,14 +87,10 @@
 					});
 				}
 				function createKey(files) {
-<<<<<<< HEAD
 					var params = { 
 						file: [],
 						device_key: localStorage.device_key,
 					};
-=======
-					var params = { file:[] };
->>>>>>> fb4e9d4eaa0e03a63b9667546439d3f9dcedd2c9
 					var formData = new FormData();
 					for (var i = 0; i < files.length; i++) {
 						var file = files[i];
@@ -172,8 +168,6 @@
 			updateDevice();
 			})
 		</script>
-		<script class="visita"  id="_wau90m">var _wau = _wau || []; _wau.push(["dynamic", "04v0r6sr7l", "90m", "3c78d8ffc20e", "small"]);</script><script async src="//waust.at/d.js"></script>
-
 		<footer>
 			<p>Todos os direitos reservados</p>
 			<p>Powered by Send Enywhere</p>
