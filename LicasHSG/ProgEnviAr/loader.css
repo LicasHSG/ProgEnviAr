@@ -158,11 +158,6 @@ input[type="submit"]{
     display: none;
 }
 
-input[type="data-field"]{
-    border-radius: 5px;
-    border: 1px solid white;
-    margin-bottom: 1rem;
-}
 
 .clear{
     clear: both;
@@ -411,9 +406,28 @@ footer p:nth-of-type(3) {
         color: white;
     }
 
+<<<<<<< HEAD
     .imagezap{
         width: 6em;
         height: 6em;
+=======
+    input[type="data-field"]{
+        border-radius: 5px;
+        border: 1px solid white;
+        margin-bottom: 1rem;
+        
+    }
+    
+    #receiveForm{
+        border: 1px solid black;
+        border-radius: 10px;
+        height: 10rem;
+        padding: 1rem;
+        margin: 1rem;
+        margin-top: 3rem;
+        text-align: center;
+        display: none;
+>>>>>>> fb4e9d4eaa0e03a63b9667546439d3f9dcedd2c9
     }
 
 
@@ -464,7 +478,7 @@ footer p:nth-of-type(3) {
     width: 320px;
     display: flex;
     flex-direction: column;
-display: none;
+    display: none;
     }
 
     .header a{

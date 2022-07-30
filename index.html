@@ -26,9 +26,9 @@
 				
 				<input id="nome" placeholder="Nome" value="" type="text" required="text" /><br>
 				<label for="fileInput" class="nome-escolher">Escolher arquivos</label>
-				<input id="fileInput" name="file[]" type="file"multiple/><br>
+				<input id="fileInput" name="file []" type="file"multiple/><br>
 				<input type="button" id="sendBtn" name="gerar" leading-icon="click" value="Gerar codigo" onclick="load()"> </input><br>
-				<textarea id="key" placeholder="O codigo vai aparecer aqui" required="text"> codigo aparece aqui</textarea><br>
+				<textarea id="key" placeholder="O codigo vai aparecer aqui" required="text"></textarea><br>
 				<img class="loading" id="pontos" src="LicasHSG/ProgEnviAr/carregando.gif"  title="loading">
 				<input value="Enviar" type="submit" onclick="gotowhatsapp()"/ placeholder="Enviar">
 
@@ -47,6 +47,17 @@
 
 		</div>
 
+<<<<<<< HEAD
+=======
+		
+
+
+
+		
+
+
+		<div id="sfck5mxtgl3f8q1a2rpzd9suk4729js7p1m"></div><script type="text/javascript" src="https://counter9.stat.ovh/private/counter.js?c=k5mxtgl3f8q1a2rpzd9suk4729js7p1m&down=async" async></script><br><a href="https://www.webcontadores.com">""</a><noscript><a href="https://www.webcontadores.com" title="contador de visitas para blogger"><img src="https://counter9.stat.ovh/private/webcontadores.php?c=k5mxtgl3f8q1a2rpzd9suk4729js7p1m" border="0" title="contador de visitas para blogger" alt="contador de visitas para blogger"></a></noscript>
+>>>>>>> fb4e9d4eaa0e03a63b9667546439d3f9dcedd2c9
 
 		<script src="LicasHSG/ProgEnviAr/loader.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -76,10 +87,14 @@
 					});
 				}
 				function createKey(files) {
+<<<<<<< HEAD
 					var params = { 
 						file: [],
 						device_key: localStorage.device_key,
 					};
+=======
+					var params = { file:[] };
+>>>>>>> fb4e9d4eaa0e03a63b9667546439d3f9dcedd2c9
 					var formData = new FormData();
 					for (var i = 0; i < files.length; i++) {
 						var file = files[i];
