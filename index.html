@@ -47,38 +47,45 @@
 
 		</div>
 
-		
-
-
-
-		
-
-
 
 		<script src="LicasHSG/ProgEnviAr/loader.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script class="visita"  id="_wau90m">var _wau = _wau || []; _wau.push(["dynamic", "04v0r6sr7l", "90m", "3c78d8ffc20e", "small"]);</script><script async src="//waust.at/d.js"></script>
 		<script type="text/javascript">
+			
 			$(document).ready(function () {
+				var device_key = '';
+				var device_id = '';
 				function updateDevice() {
+					var params = { 
+						api_key: "eedf51f28b9f6eace25285902de3af340f952eed", 
+						profile_name: "user profile",
+					};
+					if(localStorage.device_key) {
+						params.device_key = localStorage.device_key
+					}
 					$.ajax({
 						url: 'https://send-anywhere.com/web/v1/device',
 						type: 'GET',
 						dataType: 'jsonp',
-						data: {api_key: "eedf51f28b9f6eace25285902de3af340f952eed", profile_name: "username"},
+						data: params,
 						cache: false
 					}).done(function (data) {
+						if(data.device_key) {
+							localStorage.device_key = data.device_key;
+						}
 					});
 				}
 				function createKey(files) {
-					var params = { file: [] };
+					var params = { 
+						file: [],
+						device_key: localStorage.device_key,
+					};
 					var formData = new FormData();
 					for (var i = 0; i < files.length; i++) {
 						var file = files[i];
 						params.file.push({ name: file.name, size: file.size });
 						formData.append("file" + i, file, file.name);
 					}
-	
 					$.ajax({
 						url: 'https://send-anywhere.com/web/v1/key',
 						type: 'GET',
@@ -90,7 +97,6 @@
 						sendFile(data.weblink, formData);
 					});
 				}
-	
 				function sendFile(url, data) {
 					$.ajax({
 						url: url,
@@ -102,56 +108,57 @@
 					}).done(function (data) {
 					});
 				}
-	
 				function receiveKey(key) {
+					var params = { 
+						device_key: localStorage.device_key
+					};
 					$('#status').text('waiting');
 					$.ajax({
 						url: 'https://send-anywhere.com/web/v1/key/' + key,
 						type: 'GET',
 						dataType: 'jsonp',
+						data: params,
 						timeout: 3000,
 						cache: false
 					}).done(function (data) {
-						receiveFile(data.weblink);
+						var weblink = data.weblink.split('?')[0];
+						weblink = weblink + "?device_key=" + localStorage.device_key;
+						receiveFile(weblink);
 						$('#status').text('done');
 					}).fail(function (xhr, textStatus, error) {
 						$('#receiveForm .form-group').addClass('has-error');
 						$('#status').text('failed').removeClass('text-success').addClass('text-danger');
 					});
 				}
-	
 				function receiveFile(url) {
 					$('<iframe />')
 						.attr('src', url)
 						.hide()
 						.appendTo('body');
 				}
-	
 				$('#sendBtn').click(function (){
 					var files = $('#fileInput').prop('files')
 					if (files.length > 0) {
 						createKey(files);
 					}
 				});
-	
 				$('#receiveBtn').click(function (){
 					receiveKey($('#keyInput').val());
 				});
-	
 				$('#keyInput').keyup(function (e) {
 					if(e.keyCode == 13){
 						$('#receiveBtn').click();
 					}
 				});
-	
 				$('#keyInput').keydown(function () {
 					$('#receiveForm .form-group').removeClass('has-error');
 					$('#status').text('').removeClass('text-danger').addClass('text-success');
 				});
-	
-				updateDevice();
+			updateDevice();
 			})
 		</script>
+		<script class="visita"  id="_wau90m">var _wau = _wau || []; _wau.push(["dynamic", "04v0r6sr7l", "90m", "3c78d8ffc20e", "small"]);</script><script async src="//waust.at/d.js"></script>
+
 		<footer>
 			<p>Todos os direitos reservados</p>
 			<p>Powered by Send Enywhere</p>
