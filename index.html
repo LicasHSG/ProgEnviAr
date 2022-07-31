@@ -33,15 +33,20 @@
 				<textarea id="key" placeholder="O codigo vai aparecer aqui" required="text"> codigo aparece aqui</textarea><br>
 				<img class="loading" id="pontos" src="LicasHSG/ProgEnviAr/carregando.gif"  title="loading">
 				<input value="Enviar" type="submit" onclick="gotowhatsapp()"/ placeholder="Enviar">
-
 			</form>
-
-
 			<img id="imagem" src="LicasHSG/ProgEnviAr/grupo.png" title="grupo-pessoas">
-
-			
-
+		
 		</div>
+
+	</form>
+	<form id="receiveForm" class="col-sm-6">
+		<div class="form-group">
+			<label for="">Receive</label>
+			<input id="keyInput" class="form-control" onkeypress="return event.keyCode != 13;"/><br/>
+			<div id="receiveBtn" class="btn btn-default form-control">Receive</div><br/><br/>
+			<label for="">Status: </label> <span id="status" class="text-success"></span>
+		</div>
+	</form>
 
 		
 
