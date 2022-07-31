@@ -121,13 +121,16 @@ input[type="submit"]{
 }
 
 #receiveForm{
+    width: 20rem;
     border: 1px solid black;
     border-radius: 10px;
-    height: 10rem;
+    height: 15rem;
     padding: 1rem;
     margin: 1rem;
-    margin-top: 3rem;
+    margin-bottom: 5rem;
+    margin-left: 10rem;
     text-align: center;
+    position: relative;
 }
 
 #keyInput{
