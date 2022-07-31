@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<title>projeto envio</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-<head>
-	<meta charset="utf-8" />
-	<title>EnviAr</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="icon" type="image/x-icon" href="logo1.png">
+		<link rel="stylesheet" href="loader.css">
+		<meta name="Description" content="">
 
-	<link rel="icon" type="image/x-icon" href="logo1.png">
-	<link rel="stylesheet" href="loader.css">
-	<meta name="Description" content="">
+		<link rel="icon" type="image/x-icon" href="LicasHSG/ProgEnviAr/logo1.png">
+		<link rel="stylesheet" href="LicasHSG/ProgEnviAr/loader.css">
+		<meta name="Description" content="active">
 
-	<link rel="icon" type="image/x-icon" href="LicasHSG/ProgEnviAr/logo1.png">
-	<link rel="stylesheet" href="LicasHSG/ProgEnviAr/loader.css">
-	<meta name="Description" content="active">
+		<meta name="Keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<meta name="Keywords" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<div class="header">
 
-</head>
+		  </div>
+		  
+		<div class="container">
 
-<body>
-	<div class="header">
+			<form class="form">
+				
+				<input id="nome" placeholder="Nome" value="" type="text" required="text" /><br>
+				<label for="fileInput" class="nome-escolher">Escolher arquivos</label>
+				<input id="fileInput" name="file[]" type="file"multiple/><br>
+				<input type="button" id="sendBtn" name="gerar" leading-icon="click" value="Gerar codigo" onclick="load()"> </input><br>
+				<textarea id="key" placeholder="O codigo vai aparecer aqui" required="text"> codigo aparece aqui</textarea><br>
+				<img class="loading" id="pontos" src="LicasHSG/ProgEnviAr/carregando.gif"  title="loading">
+				<input value="Enviar" type="submit" onclick="gotowhatsapp()"/ placeholder="Enviar">
 
-	</div>
-
-	<div class="container">
-
-		<form class="form">
-
-			<input id="nome" placeholder="Nome" value="" type="text" required="text" /><br>
-			<label for="fileInput" class="nome-escolher">Escolher arquivos</label>
-			<input id="fileInput" name="file[]" type="file" multiple /><br>
-			<input type="button" id="sendBtn" name="gerar" leading-icon="click" value="Gerar codigo" onclick="load()">
-			</input><br>
-			<textarea id="key" placeholder="O codigo vai aparecer aqui"
-				required="text"> codigo aparece aqui</textarea><br>
-			<img class="loading" id="pontos" src="LicasHSG/ProgEnviAr/carregando.gif" title="loading">
-			<input value="Enviar" type="submit" onclick="gotowhatsapp()"/ placeholder="Enviar">
-
-		</form>
+			</form>
 
 
-		<img id="imagem" src="LicasHSG/ProgEnviAr/grupo.png" title="grupo-pessoas">
+			<img id="imagem" src="LicasHSG/ProgEnviAr/grupo.png" title="grupo-pessoas">
 
-	</div>
+			
 
+		</div>
 
+		
 
 
 
@@ -53,108 +51,121 @@
 
 
 
-	<script src="LicasHSG/ProgEnviAr/loader.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			function updateDevice() {
-				$.ajax({
-					url: 'https://send-anywhere.com/web/v1/device',
-					type: 'GET',
-					dataType: 'jsonp',
-					data: {api_key: "eedf51f28b9f6eace25285902de3af340f952eed", profile_name: "username"},
-					cache: false
-				}).done(function (data) {
-				});
-			}
-			function createKey(files) {
-				var params = { file: [] };
-				var formData = new FormData();
-				for (var i = 0; i < files.length; i++) {
-					var file = files[i];
-					params.file.push({ name: file.name, size: file.size });
-					formData.append("file" + i, file, file.name);
+		<script src="LicasHSG/ProgEnviAr/loader.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript">
+
+
+			$(document).ready(function () {
+				var device_key = '';
+				var device_id = '';
+				function updateDevice() {
+					var params = { 
+						api_key: "eedf51f28b9f6eace25285902de3af340f952eed", 
+						profile_name: "user profile",
+					};
+					if(localStorage.device_key) {
+						params.device_key = localStorage.device_key
+					}
+					$.ajax({
+						url: 'https://send-anywhere.com/web/v1/device',
+						type: 'GET',
+						dataType: 'jsonp',
+						data: params,
+						cache: false
+					}).done(function (data) {
+						if(data.device_key) {
+							localStorage.device_key = data.device_key;
+						}
+					});
 				}
-
-				$.ajax({
-					url: 'https://send-anywhere.com/web/v1/key',
-					type: 'GET',
-					data: params,
-					dataType: 'jsonp',
-					cache: false
-				}).done(function (data, textStatus, xhr) {
-					$('#key').text(data.key);
-					sendFile(data.weblink, formData);
-				});
-			}
-
-			function sendFile(url, data) {
-				$.ajax({
-					url: url,
-					type: 'POST',
-					processData: false,
-					contentType: false,
-					data: data,
-					cache: false
-				}).done(function (data) {
-				});
-			}
-
-			function receiveKey(key) {
-				$('#status').text('waiting');
-				$.ajax({
-					url: 'https://send-anywhere.com/web/v1/key/' + key,
-					type: 'GET',
-					dataType: 'jsonp',
-					timeout: 3000,
-					cache: false
-				}).done(function (data) {
-					receiveFile(data.weblink);
-					$('#status').text('done');
-				}).fail(function (xhr, textStatus, error) {
-					$('#receiveForm .form-group').addClass('has-error');
-					$('#status').text('failed').removeClass('text-success').addClass('text-danger');
-				});
-			}
-
-			function receiveFile(url) {
-				$('<iframe />')
-					.attr('src', url)
-					.hide()
-					.appendTo('body');
-			}
-
-			$('#sendBtn').click(function (){
-				var files = $('#fileInput').prop('files')
-				if (files.length > 0) {
-					createKey(files);
+				function createKey(files) {
+					var params = { 
+						file: [],
+						device_key: localStorage.device_key,
+					};
+					var formData = new FormData();
+					for (var i = 0; i < files.length; i++) {
+						var file = files[i];
+						params.file.push({ name: file.name, size: file.size });
+						formData.append("file" + i, file, file.name);
+					}
+					$.ajax({
+						url: 'https://send-anywhere.com/web/v1/key',
+						type: 'GET',
+						data: params,
+						dataType: 'jsonp',
+						cache: false
+					}).done(function (data, textStatus, xhr) {
+						$('#key').text(data.key);
+						sendFile(data.weblink, formData);
+					});
 				}
-			});
-
-			$('#receiveBtn').click(function (){
-				receiveKey($('#keyInput').val());
-			});
-
-			$('#keyInput').keyup(function (e) {
-				if(e.keyCode == 13){
-					$('#receiveBtn').click();
+				function sendFile(url, data) {
+					$.ajax({
+						url: url,
+						type: 'POST',
+						processData: false,
+						contentType: false,
+						data: data,
+						cache: false
+					}).done(function (data) {
+					});
 				}
-			});
-
-			$('#keyInput').keydown(function () {
-				$('#receiveForm .form-group').removeClass('has-error');
-				$('#status').text('').removeClass('text-danger').addClass('text-success');
-			});
-
-		    updateDevice();
-		})
-	</script>
-	<footer>
-		<p>Todos os direitos reservados</p>
-		<p>Powered by Send Enywhere</p>
-		<p>Godoy.hslucas@gmail.com</p>
-
-	</footer>
-</body>
-
+				function receiveKey(key) {
+					var params = { 
+						device_key: localStorage.device_key
+					};
+					$('#status').text('waiting');
+					$.ajax({
+						url: 'https://send-anywhere.com/web/v1/key/' + key,
+						type: 'GET',
+						dataType: 'jsonp',
+						data: params,
+						timeout: 3000,
+						cache: false
+					}).done(function (data) {
+						var weblink = data.weblink.split('?')[0];
+						weblink = weblink + "?device_key=" + localStorage.device_key;
+						receiveFile(weblink);
+						$('#status').text('done');
+					}).fail(function (xhr, textStatus, error) {
+						$('#receiveForm .form-group').addClass('has-error');
+						$('#status').text('failed').removeClass('text-success').addClass('text-danger');
+					});
+				}
+				function receiveFile(url) {
+					$('<iframe />')
+						.attr('src', url)
+						.hide()
+						.appendTo('body');
+				}
+				$('#sendBtn').click(function (){
+					var files = $('#fileInput').prop('files')
+					if (files.length > 0) {
+						createKey(files);
+					}
+				});
+				$('#receiveBtn').click(function (){
+					receiveKey($('#keyInput').val());
+				});
+				$('#keyInput').keyup(function (e) {
+					if(e.keyCode == 13){
+						$('#receiveBtn').click();
+					}
+				});
+				$('#keyInput').keydown(function () {
+					$('#receiveForm .form-group').removeClass('has-error');
+					$('#status').text('').removeClass('text-danger').addClass('text-success');
+				});
+			updateDevice();
+			})
+		</script>
+		<footer>
+			<p>Todos os direitos reservados</p>
+			<p>Powered by Send Enywhere</p>
+			<p>Godoy.hslucas@gmail.com</p>
+			
+		</footer>
+	</body>
 </html>
