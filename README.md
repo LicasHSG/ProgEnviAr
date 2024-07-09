@@ -16,7 +16,7 @@
 
 ## Detalhes do projeto
 
-Textos e imagens que descrevam seu projeto, suas conquistas, seus desafios, próximos passos, etc...
+pagina simples para envio de arquivos 
 
 
 <div align="center">
